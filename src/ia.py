@@ -12,17 +12,20 @@ import requests
 
 from src.loading_animation import loading_animation
 from src.pre_prompt import pre_prompt
-
-openai.api_key = "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"
+from src.built_in import built_in
 
 # Création du fichier log.txt & a sert à ajouter du texte dans le fichier
 log_file = open("log.txt", "a")
 
+openai.api_key = "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"
 
-def ia():
+def ia(api_key):
     pre_prompt()
+
     while True:
         question = input("$> ")
+        if (built_in(question, log_file) == 1):
+            continue
 
         if question == "ouvre google":
             url = "https://www.google.com"
@@ -77,16 +80,6 @@ def ia():
             print(f"Execution du programme {file_name}")
             loading_animation(3, "Chargement en cours : ", "■")
             subprocess.call(["python", file_name])
-            continue
-
-        if question == "exit":
-            print("fermeture du programme")
-            loading_animation(3, "Chargement en cours : ", "■")
-            log_file.close()
-            exit()
-
-        if question == "clear":
-            print("\033c")
             continue
 
         if question == "crée une image":
