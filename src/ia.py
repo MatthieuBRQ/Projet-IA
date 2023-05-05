@@ -1,15 +1,26 @@
+#!/usr/bin/env python
+
+"""
+ia.py:
+    ia core function
+"""
+
 import openai
 import subprocess
 import webbrowser
 import requests
 
 from src.loading_animation import loading_animation
+from src.pre_prompt import pre_prompt
 
-openai.api_key = "token"
+openai.api_key = "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"
 
-log_file = open("log.txt", "a") # Création du fichier log.txt & a sert à ajouter du texte dans le fichier
+# Création du fichier log.txt & a sert à ajouter du texte dans le fichier
+log_file = open("log.txt", "a")
+
 
 def ia():
+    pre_prompt()
     while True:
         question = input("$> ")
 
@@ -67,7 +78,7 @@ def ia():
             loading_animation(3, "Chargement en cours : ", "■")
             subprocess.call(["python", file_name])
             continue
-        
+
         if question == "exit":
             print("fermeture du programme")
             loading_animation(3, "Chargement en cours : ", "■")
@@ -77,7 +88,7 @@ def ia():
         if question == "clear":
             print("\033c")
             continue
-        
+
         if question == "crée une image":
             prompt = input("prompt image : ")
             response = openai.Image.create(
@@ -93,12 +104,18 @@ def ia():
             continue
 
         response = openai.Completion.create(
-            engine="text-davinci-003", # text-davinci-002 sert à la génération de texte
-            prompt=question, # question sert à la question posée
-            max_tokens=500, # max_tokens sert à la longueur de la réponse
-            n=1, # n sert au nombre de réponse
-            stop=None, # stop sert à la fin de la réponse
-            temperature=0.7, # temperature sert à la température de la réponse
+            # text-davinci-002 sert à la génération de texte
+            engine="text-davinci-003",
+            # question sert à la question posée
+            prompt=question,
+            # max_tokens sert à la longueur de la réponse
+            max_tokens=500,
+            # n sert au nombre de réponse
+            n=1,
+            # stop sert à la fin de la réponse
+            stop=None,
+            # temperature sert à la température de la réponse
+            temperature=0.7,
         )
 
         answer = response.choices[0].text.strip()

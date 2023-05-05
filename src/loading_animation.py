@@ -7,6 +7,7 @@ loading_animation.py:
 
 import time
 
+
 def loading_animation(seconds, message="Loading", symbol="▋"):
     print(message, end="")
     for i in range(10):
