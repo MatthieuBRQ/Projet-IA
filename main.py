@@ -1,15 +1,22 @@
-import os
-from dotenv import load_dotenv, find_dotenv
+#!/usr/bin/env python
+
+"""
+main.py:
+    main function of the project
+"""
 
 from src.print_header import print_header
 from src.ia import ia
 
-def launch_ai(api_key):
+from src.data import Data
+from src.init_data import init_data
+
+
+def launch_ai(data: Data):
     print_header()
-    ia(api_key)
+    ia(data)
 
 
 if __name__ == "__main__":
-    load_dotenv(find_dotenv())
-    api_key = os.environ.get("KEY")
-    launch_ai(api_key)
+    data = init_data()
+    launch_ai(data)

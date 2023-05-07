@@ -14,17 +14,15 @@ from src.loading_animation import loading_animation
 from src.pre_prompt import pre_prompt
 from src.built_in import built_in
 
-# Création du fichier log.txt & a sert à ajouter du texte dans le fichier
-log_file = open("log.txt", "a")
 
-openai.api_key = "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"
+def ia(data):
+    openai.api_key = data.api_key
 
-def ia(api_key):
     pre_prompt()
 
     while True:
         question = input("$> ")
-        if (built_in(question, log_file) == 1):
+        if (built_in(question, data.log_file) == 1):
             continue
 
         if question == "ouvre google":
@@ -114,5 +112,5 @@ def ia(api_key):
         answer = response.choices[0].text.strip()
         print("\033[32m" + answer + "\033[0m")
 
-        log_file.write("Question: " + question + "\n")
-        log_file.write("Réponse: " + answer + "\n\n")
+        data.log_file.write("Question: " + question + "\n")
+        data.log_file.write("Réponse: " + answer + "\n\n")

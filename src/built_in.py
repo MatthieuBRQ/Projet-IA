@@ -5,8 +5,6 @@ built_in.py:
     execute built_in command
 """
 
-import time
-
 from src.loading_animation import loading_animation
 
 
