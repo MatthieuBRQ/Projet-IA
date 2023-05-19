@@ -20,7 +20,7 @@ def ia(data):
         input_user = input("$> ")
         if (built_in(input_user, data.log_file) == 1):
             continue
-        
+
         if (input_user in ("ouvre google", "ouvre youtube", "ouvre discord", "ouvre github", "ouvre twitter", "ouvre instagram", "ouvre facebook", "ouvre reddit")):
             print("ouverture de " + input_user.split(" ")[1])
             url = "https://www." + input_user.split(" ")[1] + ".com"

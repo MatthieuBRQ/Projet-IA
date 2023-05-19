@@ -10,10 +10,11 @@ from src.ia import ia
 
 from src.data import Data
 from src.init_data import init_data
-
+from src.pre_prompt import pre_prompt
 
 def launch_ai(data: Data):
     print_header()
+    pre_prompt(data.log_file)
     ia(data)
 
 

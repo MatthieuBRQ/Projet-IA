@@ -26,5 +26,5 @@ def ask_gpt(input_user, log_file):
     answer = response.choices[0].text.strip()
     print("\033[32m" + answer + "\033[0m")
 
-    log_file.write("input_user: " + input_user + "\n")
-    log_file.write("Réponse: " + answer + "\n\n")
+    log_file.write("User: " + input_user + "\n")
+    log_file.write("ChatGPT: " + answer + "\n\n")
