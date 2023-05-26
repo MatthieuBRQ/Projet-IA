@@ -38,4 +38,16 @@ def ia(data):
             create_image(input("prompt image : "))
             continue
 
+        if input_user.startswith("crée un programme en c"):
+            description_du_programme = input_user[23:]  # Extrait le reste de la phrase
+            code_c = ask_gpt(description_du_programme, data.log_file)  # Obtient la réponse de ChatGPT
+
+            if code_c is not None and isinstance(code_c, str):
+                with open("main.c", 'w') as file:
+                    file.write(code_c)
+                print("main.c a été créé avec succès.")
+            else:
+                print("Erreur : Le code généré n'est pas une chaîne de caractères valide.")
+            continue
+
         ask_gpt(input_user, data.log_file)
