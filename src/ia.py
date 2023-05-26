@@ -62,4 +62,16 @@ def ia(data):
                 print("Erreur : Le code généré n'est pas une chaîne de caractères valide.")
             continue
 
+        if input_user.startswith("crée un programme en c++"):
+            description_du_programme = input_user[25:]
+            code_c = ask_gpt(description_du_programme, data.log_file)
+
+            if code_c is not None and isinstance(code_c, str):
+                with open("main.cpp", 'w') as file:
+                    file.write(code_c)
+                print("main.cpp a été créé avec succès.")
+            else:
+                print("Erreur : Le code généré n'est pas une chaîne de caractères valide.")
+            continue
+
         ask_gpt(input_user, data.log_file)
