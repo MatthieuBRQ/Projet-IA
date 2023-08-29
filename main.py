@@ -1,23 +1,18 @@
-#!/usr/bin/env python
+import openai
+import os
 
-"""
-main.py:
-    main function of the project
-"""
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-from src.print_header import print_header
-from src.ia import ia
+def chatbot_reponse(prompt):
+    response = openai.Completion.create(
+      engine="text-davinci-002",
+      prompt=prompt,
+      temperature=0.5,
+      max_tokens=100
+    )
+    return response.choices[0].text.strip()
 
-from src.data import Data
-from src.init_data import init_data
-from src.pre_prompt import pre_prompt
+while True:
+    prompt = input("Vous: ")
+    print("ChatBot: ", chatbot_reponse(prompt))
 
-def launch_ai(data: Data):
-    print_header()
-    pre_prompt(data.log_file)
-    ia(data)
-
-
-if __name__ == "__main__":
-    data = init_data()
-    launch_ai(data)
